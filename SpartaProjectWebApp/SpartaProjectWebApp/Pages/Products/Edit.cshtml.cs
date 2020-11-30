@@ -8,16 +8,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SpartaProjectWebApp.Data;
 using SpartaProjectWebApp.Models;
+using SpartaProjectWebApp.Services;
+using SpartaProjectWebApp.Services.Interfaces;
 
 namespace SpartaProjectWebApp.Pages.Products
 {
     public class EditModel : PageModel
     {
-        private readonly SpartaProjectWebApp.Data.SpartaProjectWebAppContext _context;
+        private IProductService _service;
 
-        public EditModel(SpartaProjectWebApp.Data.SpartaProjectWebAppContext context)
+        public EditModel(SpartaProjectWebAppContext context)
         {
-            _context = context;
+            _service = new ProductService(context);
         }
 
         [BindProperty]
@@ -30,7 +32,7 @@ namespace SpartaProjectWebApp.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.ProductId == id);
+            Product = await _service.GetProductByIdAsync(id);
 
             if (Product == null)
             {
@@ -48,11 +50,11 @@ namespace SpartaProjectWebApp.Pages.Products
                 return Page();
             }
 
-            _context.Attach(Product).State = EntityState.Modified;
+            _service.AttachState(Product, EntityState.Modified);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _service.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,7 +73,7 @@ namespace SpartaProjectWebApp.Pages.Products
 
         private bool ProductExists(int id)
         {
-            return _context.Product.Any(e => e.ProductId == id);
+            return _service.ProductExists(id);
         }
     }
 }

@@ -7,16 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SpartaProjectWebApp.Data;
 using SpartaProjectWebApp.Models;
+using SpartaProjectWebApp.Services;
+using SpartaProjectWebApp.Services.Interfaces;
 
 namespace SpartaProjectWebApp.Pages.Products
 {
     public class CreateModel : PageModel
     {
-        private readonly SpartaProjectWebApp.Data.SpartaProjectWebAppContext _context;
+        private IProductService _service;
 
-        public CreateModel(SpartaProjectWebApp.Data.SpartaProjectWebAppContext context)
+        public CreateModel(SpartaProjectWebAppContext context)
         {
-            _context = context;
+            _service = new ProductService(context);
         }
 
         public IActionResult OnGet()
@@ -36,8 +38,8 @@ namespace SpartaProjectWebApp.Pages.Products
                 return Page();
             }
 
-            _context.Product.Add(Product);
-            await _context.SaveChangesAsync();
+            _service.AddProduct(Product);
+            await _service.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

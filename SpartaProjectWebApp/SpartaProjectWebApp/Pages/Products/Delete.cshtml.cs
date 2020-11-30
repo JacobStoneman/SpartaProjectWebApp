@@ -7,16 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SpartaProjectWebApp.Data;
 using SpartaProjectWebApp.Models;
+using SpartaProjectWebApp.Services;
+using SpartaProjectWebApp.Services.Interfaces;
 
 namespace SpartaProjectWebApp.Pages.Products
 {
     public class DeleteModel : PageModel
     {
-        private readonly SpartaProjectWebApp.Data.SpartaProjectWebAppContext _context;
+        private IProductService _service;
 
-        public DeleteModel(SpartaProjectWebApp.Data.SpartaProjectWebAppContext context)
+        public DeleteModel(SpartaProjectWebAppContext context)
         {
-            _context = context;
+            _service = new ProductService(context);
         }
 
         [BindProperty]
@@ -29,7 +31,7 @@ namespace SpartaProjectWebApp.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.ProductId == id);
+            Product = await _service.GetProductByIdAsync(id);
 
             if (Product == null)
             {
@@ -45,12 +47,12 @@ namespace SpartaProjectWebApp.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FindAsync(id);
+            Product = await _service.FindProductAsync(id);
 
             if (Product != null)
             {
-                _context.Product.Remove(Product);
-                await _context.SaveChangesAsync();
+                _service.RemoveProduct(Product);
+                await _service.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index");

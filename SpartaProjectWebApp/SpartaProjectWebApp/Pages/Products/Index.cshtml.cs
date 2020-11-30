@@ -8,16 +8,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SpartaProjectWebApp.Data;
 using SpartaProjectWebApp.Models;
+using SpartaProjectWebApp.Services;
+using SpartaProjectWebApp.Services.Interfaces;
 
 namespace SpartaProjectWebApp.Pages.Products
 {
     public class IndexModel : PageModel
     {
-        private readonly SpartaProjectWebApp.Data.SpartaProjectWebAppContext _context;
+        private IProductService _service;
 
-        public IndexModel(SpartaProjectWebApp.Data.SpartaProjectWebAppContext context)
+        public IndexModel(SpartaProjectWebAppContext context)
         {
-            _context = context;
+            _service = new ProductService(context);
         }
 
         public IList<Product> Product { get;set; }
@@ -26,13 +28,7 @@ namespace SpartaProjectWebApp.Pages.Products
 
         public async Task OnGetAsync()
         {
-            var products = from m in _context.Product
-                         select m;
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                products = products.Where(s => s.Name.Contains(SearchString));
-            }
-
+            IQueryable<Product> products = _service.RetrieveAllByString(SearchString);
             Product = await products.ToListAsync();
         }
     }

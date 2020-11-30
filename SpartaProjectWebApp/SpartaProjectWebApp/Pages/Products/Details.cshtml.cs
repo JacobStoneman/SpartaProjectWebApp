@@ -7,16 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SpartaProjectWebApp.Data;
 using SpartaProjectWebApp.Models;
+using SpartaProjectWebApp.Services;
+using SpartaProjectWebApp.Services.Interfaces;
 
 namespace SpartaProjectWebApp.Pages.Products
 {
     public class DetailsModel : PageModel
     {
-        private readonly SpartaProjectWebApp.Data.SpartaProjectWebAppContext _context;
+        private IProductService _service;
 
-        public DetailsModel(SpartaProjectWebApp.Data.SpartaProjectWebAppContext context)
+        public DetailsModel(SpartaProjectWebAppContext context)
         {
-            _context = context;
+            _service = new ProductService(context);
         }
 
         public Product Product { get; set; }
@@ -28,7 +30,7 @@ namespace SpartaProjectWebApp.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.ProductId == id);
+            Product = await _service.GetProductByIdAsync(id);
 
             if (Product == null)
             {
