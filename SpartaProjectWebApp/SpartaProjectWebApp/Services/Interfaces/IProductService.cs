@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpartaProjectWebApp.Services.Interfaces
 {
-	interface IProductService
+	public interface IProductService
 	{
 		bool ProductExists(int id);
 		Task<Product> GetProductByIdAsync(int? id);
