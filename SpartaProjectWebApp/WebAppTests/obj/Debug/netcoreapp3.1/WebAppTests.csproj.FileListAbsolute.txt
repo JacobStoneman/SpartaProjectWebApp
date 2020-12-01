@@ -228,3 +228,5 @@ C:\Users\Jacob\Documents\Files\WebApps\SpartaProjectWebApp\SpartaProjectWebApp\W
 C:\Users\Jacob\Documents\Files\WebApps\SpartaProjectWebApp\SpartaProjectWebApp\WebAppTests\obj\Debug\netcoreapp3.1\WebAppTests.dll
 C:\Users\Jacob\Documents\Files\WebApps\SpartaProjectWebApp\SpartaProjectWebApp\WebAppTests\obj\Debug\netcoreapp3.1\WebAppTests.pdb
 C:\Users\Jacob\Documents\Files\WebApps\SpartaProjectWebApp\SpartaProjectWebApp\WebAppTests\obj\Debug\netcoreapp3.1\WebAppTests.genruntimeconfig.cache
+C:\Users\Jacob\Documents\Files\WebApps\SpartaProjectWebApp\SpartaProjectWebApp\WebAppTests\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\Jacob\Documents\Files\WebApps\SpartaProjectWebApp\SpartaProjectWebApp\WebAppTests\bin\Debug\netcoreapp3.1\Moq.dll
