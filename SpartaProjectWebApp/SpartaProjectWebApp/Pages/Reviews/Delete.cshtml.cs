@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SpartaProjectWebApp.Data;
 using SpartaProjectWebApp.Models;
+using SpartaProjectWebApp.Services.Interfaces;
 
 namespace SpartaProjectWebApp.Pages.Reviews
 {
     public class DeleteModel : PageModel
     {
-        private readonly SpartaProjectWebApp.Data.SpartaProjectWebAppContext _context;
+        private IReviewService _service;
 
-        public DeleteModel(SpartaProjectWebApp.Data.SpartaProjectWebAppContext context)
+        public DeleteModel(IReviewService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [BindProperty]
@@ -29,8 +30,7 @@ namespace SpartaProjectWebApp.Pages.Reviews
                 return NotFound();
             }
 
-            Review = await _context.Review
-                .Include(r => r.Product).FirstOrDefaultAsync(m => m.ReviewId == id);
+            Review = await _service.GetReviewByIdAsync(id);
 
             if (Review == null)
             {
@@ -46,12 +46,12 @@ namespace SpartaProjectWebApp.Pages.Reviews
                 return NotFound();
             }
 
-            Review = await _context.Review.FindAsync(id);
+            Review = await _service.FindReviewAsync(id);
 
             if (Review != null)
             {
-                _context.Review.Remove(Review);
-                await _context.SaveChangesAsync();
+                _service.RemoveReview(Review);
+                await _service.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index");

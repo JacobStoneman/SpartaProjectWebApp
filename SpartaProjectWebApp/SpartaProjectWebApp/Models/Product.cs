@@ -31,6 +31,6 @@ namespace SpartaProjectWebApp.Models
 		[Required]
 		public string Category { get; set; }
 
-		public List<Review> Reviews { get; set; } = new List<Review>();
+		public List<Review> Reviews { get; set; }
 	}
 }

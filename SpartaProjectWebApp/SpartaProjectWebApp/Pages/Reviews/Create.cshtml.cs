@@ -45,7 +45,7 @@ namespace SpartaProjectWebApp.Pages.Reviews
 
             Product prod = await _productService.GetProductByIdAsync(SelectedId);
             _service.AddReview(Review);
-            prod.Reviews.Add(Review);
+
             await _service.SaveChangesAsync();
 
             return RedirectToPage("./Index");
