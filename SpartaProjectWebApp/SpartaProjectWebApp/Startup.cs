@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SpartaProjectWebApp.Data;
+using SpartaProjectWebApp.Services.Interfaces;
+using SpartaProjectWebApp.Services;
 
 namespace SpartaProjectWebApp
 {
@@ -29,6 +31,8 @@ namespace SpartaProjectWebApp
 
 		    services.AddDbContext<SpartaProjectWebAppContext>(options =>
 		            options.UseSqlServer(Configuration.GetConnectionString("SpartaProjectWebAppContext")));
+
+			services.AddScoped<IProductService, ProductService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

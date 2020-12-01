@@ -17,9 +17,9 @@ namespace SpartaProjectWebApp.Pages.Products
     {
         private IProductService _service;
 
-        public EditModel(SpartaProjectWebAppContext context)
+        public EditModel(IProductService service)
         {
-            _service = new ProductService(context);
+            _service = service;
         }
 
         [BindProperty]

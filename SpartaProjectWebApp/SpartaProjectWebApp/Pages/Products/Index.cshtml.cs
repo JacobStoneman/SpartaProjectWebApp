@@ -17,9 +17,9 @@ namespace SpartaProjectWebApp.Pages.Products
     {
         private IProductService _service;
 
-        public IndexModel(SpartaProjectWebAppContext context)
+        public IndexModel(IProductService service)
         {
-            _service = new ProductService(context);
+            _service = service;
         }
 
         public IList<Product> Product { get;set; }

@@ -16,9 +16,9 @@ namespace SpartaProjectWebApp.Pages.Products
     {
         private IProductService _service;
 
-        public CreateModel(SpartaProjectWebAppContext context)
+        public CreateModel(IProductService service)
         {
-            _service = new ProductService(context);
+            _service = service;
         }
 
         public IActionResult OnGet()

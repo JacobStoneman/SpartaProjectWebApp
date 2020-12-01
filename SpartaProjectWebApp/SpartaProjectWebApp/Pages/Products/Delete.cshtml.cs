@@ -16,9 +16,9 @@ namespace SpartaProjectWebApp.Pages.Products
     {
         private IProductService _service;
 
-        public DeleteModel(SpartaProjectWebAppContext context)
+        public DeleteModel(IProductService service)
         {
-            _service = new ProductService(context);
+            _service = service;
         }
 
         [BindProperty]

@@ -19,7 +19,7 @@ namespace WebAppTests
 				.UseInMemoryDatabase(databaseName: "Test_DB")
 				.Options;
 			SpartaProjectWebAppContext context = new SpartaProjectWebAppContext(options);
-			_details = new DetailsModel(context);
+			_details = new DetailsModel(new ProductService(context));
 		}
 
 		[Test]
