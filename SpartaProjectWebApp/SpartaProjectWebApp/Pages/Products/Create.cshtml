@@ -11,32 +11,37 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Product.Name" class="control-label"></label>
-                <input asp-for="Product.Name" class="form-control" />
-                <span asp-validation-for="Product.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Price" class="control-label"></label>
-                <input asp-for="Product.Price" class="form-control" />
-                <span asp-validation-for="Product.Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Url" class="control-label"></label>
-                <input asp-for="Product.Url" class="form-control" />
-                <span asp-validation-for="Product.Url" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.AverageRating" class="control-label"></label>
-                <input asp-for="Product.AverageRating" class="form-control" />
-                <span asp-validation-for="Product.AverageRating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+		<form method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Product.Name" class="control-label"></label>
+				<input asp-for="Product.Name" class="form-control" />
+				<span asp-validation-for="Product.Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Product.Price" class="control-label"></label>
+				<input asp-for="Product.Price" class="form-control" />
+				<span asp-validation-for="Product.Price" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Product.Url" class="control-label"></label>
+				<input asp-for="Product.Url" class="form-control" />
+				<span asp-validation-for="Product.Url" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Product.AverageRating" class="control-label"></label>
+				<input asp-for="Product.AverageRating" class="form-control" />
+				<span asp-validation-for="Product.AverageRating" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Product.Category" class="control-label"></label>
+				<input asp-for="Product.Category" class="form-control" />
+				<span asp-validation-for="Product.Category" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
     </div>
 </div>
 

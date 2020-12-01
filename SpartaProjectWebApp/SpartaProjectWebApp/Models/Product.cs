@@ -26,5 +26,9 @@ namespace SpartaProjectWebApp.Models
 		[RegularExpression(@"[+]?([0-4]*\.[0-9]+|[0-5])")]
 		[Display(Name = "Average Rating")]
 		public float AverageRating { get; set; }
+
+		[StringLength(60, MinimumLength = 3)]
+		[Required]
+		public string Category { get; set; }
 	}
 }
