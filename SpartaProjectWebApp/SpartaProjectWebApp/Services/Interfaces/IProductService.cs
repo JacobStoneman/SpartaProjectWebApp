@@ -17,5 +17,6 @@ namespace SpartaProjectWebApp.Services.Interfaces
 		void RemoveProduct(Product product);
 		void AddProduct(Product product);
 		IQueryable<Product> RetrieveAllByString(string searchStr);
+		IQueryable<string> QueryCategory();
 	}
 }

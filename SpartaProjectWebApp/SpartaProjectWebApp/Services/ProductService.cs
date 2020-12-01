@@ -42,6 +42,8 @@ namespace SpartaProjectWebApp.Services
 			return products;
 		}
 
+		public IQueryable<string> QueryCategory() => from m in db.Product orderby m.Category select m.Category;
+
 		public async Task SaveChangesAsync() => await db.SaveChangesAsync();
 	}
 }

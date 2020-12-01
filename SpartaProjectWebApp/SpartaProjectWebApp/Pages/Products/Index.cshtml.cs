@@ -25,10 +25,22 @@ namespace SpartaProjectWebApp.Pages.Products
         public IList<Product> Product { get;set; }
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
+        public SelectList Categories { get; set; }
+        [BindProperty(SupportsGet =true)]
+        public string ProductCategory { get; set; }
 
         public async Task OnGetAsync()
         {
             IQueryable<Product> products = _service.RetrieveAllByString(SearchString);
+            Product = await products.ToListAsync();
+
+            IQueryable<string> categoryQuery = _service.QueryCategory();
+
+            if (!string.IsNullOrEmpty(ProductCategory))
+            {
+                products = products.Where(x => x.Category == ProductCategory);
+            }
+            Categories = new SelectList(await categoryQuery.Distinct().ToListAsync());
             Product = await products.ToListAsync();
         }
     }
