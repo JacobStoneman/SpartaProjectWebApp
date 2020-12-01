@@ -11,11 +11,13 @@ namespace SpartaProjectWebApp.Services.Interfaces
 	{
 		bool ProductExists(int id);
 		Task<Product> GetProductByIdAsync(int? id);
+		Task<Product> GetProductByNameAsync(string name);
 		Task<Product> FindProductAsync(int? id);
 		Task SaveChangesAsync();
 		void AttachState(Product product, EntityState state);
 		void RemoveProduct(Product product);
 		void AddProduct(Product product);
+		Task<List<Product>> GetProductsAsync();
 		IQueryable<Product> RetrieveAllByString(string searchStr);
 		IQueryable<string> QueryCategory();
 	}

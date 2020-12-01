@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpartaProjectWebApp.Data;
 
 namespace SpartaProjectWebApp.Migrations
 {
     [DbContext(typeof(SpartaProjectWebAppContext))]
-    partial class SpartaProjectWebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20201201172028_Reviews")]
+    partial class Reviews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

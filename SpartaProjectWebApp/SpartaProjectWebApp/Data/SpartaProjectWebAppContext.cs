@@ -15,5 +15,7 @@ namespace SpartaProjectWebApp.Data
         }
 
         public DbSet<SpartaProjectWebApp.Models.Product> Product { get; set; }
+
+        public DbSet<SpartaProjectWebApp.Models.Review> Review { get; set; }
     }
 }

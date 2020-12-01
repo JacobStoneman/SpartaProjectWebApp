@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SpartaProjectWebApp.Data;
 using SpartaProjectWebApp.Services.Interfaces;
@@ -17,6 +12,7 @@ namespace SpartaProjectWebApp
 {
 	public class Startup
 	{
+		private string _projectConnectionString = null;
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
@@ -27,12 +23,14 @@ namespace SpartaProjectWebApp
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			_projectConnectionString = Configuration["Project:ConnectionStrings"];
 			services.AddRazorPages();
 
 		    services.AddDbContext<SpartaProjectWebAppContext>(options =>
-		            options.UseSqlServer(Configuration.GetConnectionString("SpartaProjectWebAppContext")));
+		            options.UseSqlServer(_projectConnectionString));
 
 			services.AddScoped<IProductService, ProductService>();
+			services.AddScoped<IReviewService, ReviewService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

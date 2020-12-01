@@ -25,6 +25,8 @@ namespace SpartaProjectWebApp.Services
 
 		public async Task<Product> GetProductByIdAsync(int? id) => await db.Product.FirstOrDefaultAsync(m => m.ProductId == id);
 
+		public async Task<Product> GetProductByNameAsync(string name) => await db.Product.FirstOrDefaultAsync(m => m.Name == name);
+
 		public bool ProductExists(int id) => db.Product.Any(e => e.ProductId == id);
 
 		public void RemoveProduct(Product product) => db.Remove(product);
@@ -45,5 +47,7 @@ namespace SpartaProjectWebApp.Services
 		public IQueryable<string> QueryCategory() => from m in db.Product orderby m.Category select m.Category;
 
 		public async Task SaveChangesAsync() => await db.SaveChangesAsync();
+
+		public Task<List<Product>> GetProductsAsync() => db.Product.ToListAsync();
 	}
 }

@@ -30,5 +30,7 @@ namespace SpartaProjectWebApp.Models
 		[StringLength(60, MinimumLength = 3)]
 		[Required]
 		public string Category { get; set; }
+
+		public List<Review> Reviews { get; set; } = new List<Review>();
 	}
 }
